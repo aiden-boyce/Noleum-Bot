@@ -22,5 +22,5 @@ async def slap(context: Message, reason: Slapper) -> None:
     await context.send(reason)
 
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
     bot.add_command(slap)

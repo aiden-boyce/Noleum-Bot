@@ -28,5 +28,5 @@ async def divide(context: Message, num1: int, num2: int) -> None:
     await context.send(num1 / num2)
 
 
-async def setup(bot):
+async def setup(bot: commands.Bot) -> None:
     bot.add_command(math)

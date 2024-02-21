@@ -1,6 +1,5 @@
 from discord import Message
 from discord.ext import commands
-import cmds.slapper as Slapper
 
 
 @commands.group()
@@ -34,5 +33,5 @@ async def say(context: Message, *message: str) -> None:
     await context.send(" ".join(message))
 
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
     bot.add_command(silly)

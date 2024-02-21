@@ -24,7 +24,7 @@ async def on_ready() -> None:
 
 # Handle errors
 @BOT.event
-async def on_command_error(context: Message, error):
+async def on_command_error(context: Message, error) -> None:
     if isinstance(error, commands.MissingRequiredArgument):
         await context.send("handled error globally")
 
