@@ -1,6 +1,5 @@
 from discord import Intents, Message
 from discord.ext import commands
-from responses import get_response
 import settings
 
 
