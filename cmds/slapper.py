@@ -8,3 +8,19 @@ class Slapper(commands.Converter):
         name = context.author.name
         someone = choice(context.guild.members).name
         return f"{name} slaps {someone} with {argument}"
+
+
+# Slap a user
+@commands.command(
+    help="Slap a random user with argument",
+    description="Slap a random user with argument",
+    brief="Slaps",
+    enabled=True,
+    hidden=False,
+)
+async def slap(context: Message, reason: Slapper) -> None:
+    await context.send(reason)
+
+
+async def setup(bot):
+    bot.add_command(slap)

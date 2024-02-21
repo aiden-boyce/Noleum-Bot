@@ -17,6 +17,7 @@ LOGGER = settings.logging.getLogger("bot")
 @BOT.event
 async def on_ready() -> None:
     LOGGER.info(f"User: {BOT.user} (ID: {BOT.user.id})")
+    # Load all the commands
     for cmd_file in settings.CMDS_DIR.glob("*.py"):
         if cmd_file != "__init__.py":
             await BOT.load_extension(f"cmds.{cmd_file.name[:-3]}")

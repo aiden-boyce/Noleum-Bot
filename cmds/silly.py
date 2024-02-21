@@ -1,6 +1,6 @@
 from discord import Message
 from discord.ext import commands
-import cmds.classes.slapper as Slapper
+import cmds.slapper as Slapper
 
 
 @commands.group()
@@ -32,18 +32,6 @@ async def ping(context: Message) -> None:
 )
 async def say(context: Message, *message: str) -> None:
     await context.send(" ".join(message))
-
-
-# Slap a user
-@silly.command(
-    help="Slap a random user with argument",
-    description="Slap a random user with argument",
-    brief="Slaps",
-    enabled=True,
-    hidden=False,
-)
-async def slap(context: Message, reason: Slapper) -> None:
-    await context.send(reason)
 
 
 async def setup(bot):
