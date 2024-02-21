@@ -5,60 +5,33 @@ import settings
 
 
 # Setup the Bot
-bot_intents: Intents = Intents.default()
-bot_intents.message_content = True
-bot = commands.Bot(command_prefix="$", intents=bot_intents)
+INTENTS: Intents = Intents.default()
+INTENTS.message_content = True
+BOT = commands.Bot(command_prefix="$", intents=INTENTS)
 
-# Get logger
-logger = settings.logging.getLogger("bot")
-
-
-# Process Commands
-@bot.event
-async def send_message(message: Message, user_message: str) -> None:
-    # Empty Message
-    if not user_message:
-        print("Intents not properly enabled: Message empty")
-        return
-
-    # Not a bot command
-    if user_message[0] != "$":
-        return
-
-    try:
-        user_message = user_message[1:]
-        response = get_response(user_message)
-        await message.channel.send(response)
-    except Exception as e:
-        print(e)
+# Get LOGGER
+LOGGER = settings.logging.getLogger("bot")
 
 
-# Handle incoming messages
-@bot.event
-async def on_message(message: Message) -> None:
-    # Don't send a message responding to itself
-    if message.author == bot.user:
-        return
-
-    username = str(message.author)
-    user_message = str(message.content)
-    channel = str(message.channel)
-
-    print(f'[{channel}] {username}: "{user_message}"')
-    await send_message(message, user_message)
+# BOT start up
+@BOT.event
+async def on_ready() -> None:
+    LOGGER.info(f"User: {BOT.user} (ID: {BOT.user.id})")
+    for cmd_file in settings.CMDS_DIR.glob("*.py"):
+        if cmd_file != "__init__.py":
+            await BOT.load_extension(f"cmds.{cmd_file.name[:-3]}")
 
 
-# Run the bot
+# Handle errors
+@BOT.event
+async def on_command_error(context: Message, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await context.send("handled error globally")
+
+
+# Run the BOT
 def main() -> None:
-    # Get logger
-    logger = settings.logging.getLogger("bot")
-
-    # Bot start up
-    @bot.event
-    async def on_ready() -> None:
-        logger.info(f"User: {bot.user} (ID: {bot.user.id})")
-
-    bot.run(settings.TOKEN, root_logger=True)
+    BOT.run(settings.TOKEN, root_logger=True)
 
 
 if __name__ == "__main__":

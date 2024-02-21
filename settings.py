@@ -1,3 +1,4 @@
+import pathlib
 import os
 from dotenv import load_dotenv
 from typing import Final
@@ -7,6 +8,11 @@ from logging.config import dictConfig
 # Get the Token
 load_dotenv()
 TOKEN: Final[str] = os.getenv("DISCORD_TOKEN")
+
+
+BASE_DIR = pathlib.Path(__file__).parent
+
+CMDS_DIR = BASE_DIR / "cmds"
 
 LOGGING_CONFIG = {
     "version": 1,
@@ -45,6 +51,8 @@ LOGGING_CONFIG = {
         },
     },
 }
+
+dictConfig(LOGGING_CONFIG)
 
 
 def main() -> None:
