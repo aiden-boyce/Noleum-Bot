@@ -1,10 +1,9 @@
-from discord import Message
 from discord.ext import commands
 from random import choice
 
 
 class Slapper(commands.Converter):
-    async def convert(self, context: Message, argument: str) -> str:
+    async def convert(self, context: commands.Context, argument: str) -> str:
         name = context.author.name
         someone = choice(context.guild.members).name
         return f"{name} slaps {someone} with {argument}"
@@ -18,7 +17,7 @@ class Slapper(commands.Converter):
     enabled=True,
     hidden=False,
 )
-async def slap(context: Message, reason: Slapper) -> None:
+async def slap(context: commands.Context, reason: Slapper) -> None:
     await context.send(reason)
 
 

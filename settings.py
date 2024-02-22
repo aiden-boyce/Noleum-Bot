@@ -13,6 +13,7 @@ TOKEN: Final[str] = os.getenv("DISCORD_TOKEN")
 BASE_DIR = pathlib.Path(__file__).parent
 
 CMDS_DIR = BASE_DIR / "cmds"
+COGS_DIR = BASE_DIR / "cogs"
 
 LOGGING_CONFIG = {
     "version": 1,
