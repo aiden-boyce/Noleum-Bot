@@ -28,18 +28,21 @@ async def on_ready() -> None:
 
 # Load a cog
 @BOT.command(hidden=True)
+@commands.is_owner()
 async def load(context: commands.Context, cog: str):
     await BOT.load_extension(f"cogs.{cog.lower()}")
 
 
 # Reload a cog
 @BOT.command(hidden=True)
+@commands.is_owner()
 async def reload(context: commands.Context, cog: str):
     await BOT.reload_extension(f"cogs.{cog.lower()}")
 
 
 # Unload a cog
 @BOT.command(hidden=True)
+@commands.is_owner()
 async def unload(context: commands.Context, cog: str):
     await BOT.unload_extension(f"cogs.{cog.lower()}")
 
