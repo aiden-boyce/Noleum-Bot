@@ -10,15 +10,15 @@ class Greetings(commands.Cog):
         description="Noleum says hello to a specified user",
         brief="Hello [user]",
     )
-    async def hello(self, context: commands.Context, *, member: Member):
-        await context.send(f"Hello {member.name}")
+    async def hello(self, ctx: commands.Context, *, member: Member):
+        await ctx.send(f"Hello {member.name}")
 
     @commands.Cog.listener()
-    async def on_context(self, context: commands.Context):
-        """Waves to any context that contains [hello]"""
-        if "hello" in context.content.lower():
-            await context.add_reaction("👋")
+    async def on_ctx(self, ctx: commands.Context):
+        """Waves to any ctx that contains [hello]"""
+        if "hello" in ctx.content.lower():
+            await ctx.add_reaction("👋")
 
 
-async def setup(bot: commands.Bot) -> None:
+async def setup(bot: commands.Bot):
     await bot.add_cog(Greetings(bot))

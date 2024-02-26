@@ -1,7 +1,6 @@
 from discord import Intents
 from discord.ext import commands
 import settings
-import cogs.greetings
 
 # Setup the Bot
 INTENTS: Intents = Intents.default()
@@ -29,29 +28,29 @@ async def on_ready() -> None:
 # Load a cog
 @BOT.command(hidden=True)
 @commands.is_owner()
-async def load(context: commands.Context, cog: str):
+async def load(ctx: commands.Context, cog: str):
     await BOT.load_extension(f"cogs.{cog.lower()}")
 
 
 # Reload a cog
 @BOT.command(hidden=True)
 @commands.is_owner()
-async def reload(context: commands.Context, cog: str):
+async def reload(ctx: commands.Context, cog: str):
     await BOT.reload_extension(f"cogs.{cog.lower()}")
 
 
 # Unload a cog
 @BOT.command(hidden=True)
 @commands.is_owner()
-async def unload(context: commands.Context, cog: str):
+async def unload(ctx: commands.Context, cog: str):
     await BOT.unload_extension(f"cogs.{cog.lower()}")
 
 
 # Handle errors
 @BOT.event
-async def on_command_error(context: commands.Context, error) -> None:
+async def on_command_error(ctx: commands.Context, error) -> None:
     if isinstance(error, commands.MissingRequiredArgument):
-        await context.send("handled error globally")
+        await ctx.send("$help [command]")
 
 
 # Run the BOT

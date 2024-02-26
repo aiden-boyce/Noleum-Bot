@@ -3,9 +3,9 @@ from random import choice
 
 
 class Slapper(commands.Converter):
-    async def convert(self, context: commands.Context, argument: str) -> str:
-        name = context.author.name
-        someone = choice(context.guild.members).name
+    async def convert(self, ctx: commands.Context, argument: str) -> str:
+        name = ctx.author.name
+        someone = choice(ctx.guild.members).name
         return f"{name} slaps {someone} with {argument}"
 
 
@@ -17,8 +17,8 @@ class Slapper(commands.Converter):
     enabled=True,
     hidden=False,
 )
-async def slap(context: commands.Context, reason: Slapper) -> None:
-    await context.send(reason)
+async def slap(ctx: commands.Context, reason: Slapper):
+    await ctx.send(reason)
 
 
 async def setup(bot: commands.Bot):
