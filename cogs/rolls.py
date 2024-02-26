@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from functions.roll_functions import roll
+from functions.roll_functions import roll_photocard
 
 
 class Rolls(commands.Cog):
@@ -9,15 +9,15 @@ class Rolls(commands.Cog):
 
     @commands.command()
     async def roll(self, ctx: commands.Context):
-        img = roll()
+        img_info = roll_photocard()
         embed = discord.Embed(
             color=discord.Color.dark_purple(),
-            title="Singer Name",
-            description="Band Name",
+            title=img_info["name"],
+            description=img_info["category"],
         )
-        embed.set_footer("Click the button to claim!")
-        # embed.set_image(url=img)
-        await ctx.send("hello")
+        embed.set_footer(text=f"ID: {img_info['id']}")
+        embed.set_image(url=img_info["link"])
+        await ctx.send(embed=embed)
 
 
 async def setup(bot: commands.Bot) -> None:

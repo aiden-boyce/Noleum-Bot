@@ -2,27 +2,37 @@ import random
 import os
 
 
-def read_lines(path: str):
+def get_rand_photocard(path: str) -> list[str]:
     if not os.path.isfile(path):
-        return None  # Return None if the file doesn't exist
+        return None
 
     with open(path, "r", encoding="utf-8") as file:
-        lines = file.readlines()
+        lines = file.readlines()[1:]
         if not lines:
-            return None  # Return None if the file is empty
+            return None
 
-        return lines
+        # Grab valid Photo Card
+        photocard = []
+        while len(photocard) != 4:
+            line = random.choice(lines)
+            photocard = line.split(", ")
+
+        return photocard
 
 
-def roll() -> str:
-    links = read_lines("functions/img_links.txt")
-    img = random.choice(links)
-    print(img)
-    return img
+def roll_photocard() -> dict:
+    photocard = get_rand_photocard("functions/img_links.txt")
+    photocard_info = {
+        "id": photocard[0],
+        "category": photocard[1],
+        "name": photocard[2],
+        "link": photocard[3].strip() + ".jpeg",
+    }
+    return photocard_info
 
 
 def main():
-    print(roll())
+    print(roll_photocard())
 
 
 if __name__ == "__main__":
