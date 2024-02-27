@@ -2,6 +2,12 @@ from discord import Intents
 from discord.ext import commands
 import settings
 
+
+# TODO: Add a Currency
+# TODO: Store a User's Photocards (AKA make a Database)
+# TODO: Add an Enabled Category and Disabled Category
+
+
 # Setup the Bot
 INTENTS: Intents = Intents.default()
 INTENTS.message_content = True

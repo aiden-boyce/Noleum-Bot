@@ -7,6 +7,11 @@ from settings import logging
 LOGGER = logging.getLogger("bot")
 
 
+# TODO: Add a Currency
+# TODO: Store a User's Photocards (AKA make a Database)
+# TODO: Add an Enabled Category and Disabled Category
+
+
 class Photocards(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
