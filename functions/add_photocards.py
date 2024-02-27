@@ -73,10 +73,10 @@ def rename_files(folder_path: str, id_number: int, category: str):
             os.rename(os.path.join(folder_path, file_name), new_file_path)
 
             # Upload to imgur and grab the link
-            # link = upload_image_to_imgur(new_file_path)
+            link = upload_image_to_imgur(new_file_path)
 
             # Save photocard to a text file
-            photocard = f"{id_number:06d}, {category}, {name}, link.jpg"
+            photocard = f"{id_number:06d}, {category}, {name}, {link}.jpg"
             f.write(photocard + "\n")
 
             # Move the photocard to the everything directory
