@@ -21,12 +21,12 @@ def get_rand_photocard(path: str) -> list[str]:
 
 
 def roll_photocard() -> dict:
-    photocard = get_rand_photocard("functions/img_links.txt")
+    photocard = get_rand_photocard("functions/photocards_list.txt")
     photocard_info = {
         "id": photocard[0],
         "category": photocard[1],
         "name": photocard[2],
-        "link": photocard[3].strip() + ".jpeg",
+        "link": photocard[3].strip(),
     }
     return photocard_info
 
