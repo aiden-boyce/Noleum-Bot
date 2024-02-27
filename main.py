@@ -46,13 +46,6 @@ async def unload(ctx: commands.Context, cog: str):
     await BOT.unload_extension(f"cogs.{cog.lower()}")
 
 
-# Handle errors
-@BOT.event
-async def on_command_error(ctx: commands.Context, error) -> None:
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("$help [command]")
-
-
 # Run the BOT
 def main() -> None:
     BOT.run(settings.TOKEN, root_logger=True)

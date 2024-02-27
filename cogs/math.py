@@ -6,20 +6,24 @@ class Math(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def add(self, ctx: commands.Context, num1: int, num2: int):
-        await ctx.send(num1 + num2)
+    async def add(self, ctx: commands.Context, a: int, b: int):
+        """a + b = c"""
+        await ctx.send(a + b)
 
     @commands.command()
-    async def subtract(self, ctx: commands.Context, num1: int, num2: int):
-        await ctx.send(num1 - num2)
+    async def subtract(self, ctx: commands.Context, a: int, b: int):
+        """a - b = c"""
+        await ctx.send(a - b)
 
     @commands.command()
-    async def multiply(self, ctx: commands.Context, num1: int, num2: int):
-        await ctx.send(num1 * num2)
+    async def multiply(self, ctx: commands.Context, a: int, b: int):
+        """a * b = c"""
+        await ctx.send(a * b)
 
     @commands.command()
-    async def divide(self, ctx: commands.Context, num1: int, num2: int):
-        await ctx.send(num1 / num2)
+    async def divide(self, ctx: commands.Context, a: int, b: int):
+        """a / b = c"""
+        await ctx.send(a / b)
 
 
 async def setup(bot: commands.Bot):

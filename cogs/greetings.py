@@ -13,11 +13,13 @@ class Greetings(commands.Cog):
     async def hello(self, ctx: commands.Context, *, member: Member):
         await ctx.send(f"Hello {member.name}")
 
+    '''
     @commands.Cog.listener()
     async def on_ctx(self, ctx: commands.Context):
         """Waves to any ctx that contains [hello]"""
         if "hello" in ctx.content.lower():
             await ctx.add_reaction("👋")
+    '''
 
 
 async def setup(bot: commands.Bot):
