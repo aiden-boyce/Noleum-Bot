@@ -7,8 +7,8 @@ from logging.config import dictConfig
 
 # Get the Token
 load_dotenv()
-TOKEN: Final[str] = os.getenv("DISCORD_TOKEN")
-
+DISCORD_TOKEN: Final[str] = os.getenv("DISCORD_TOKEN")
+DB_PASSWORD: Final[str] = os.getenv("DATABASE_PASSWORD")
 
 BASE_DIR = pathlib.Path(__file__).parent
 

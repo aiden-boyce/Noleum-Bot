@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from functions.roll_functions import roll_photocard
+from functions.photocard_functions import roll_photocard
 from views.rolls_view import RollsView
 from settings import logging
 
@@ -28,7 +28,6 @@ class Photocards(commands.Cog):
         )
         embed.set_footer(text=f"ID: {photocard['id']}")
         embed.set_image(url=photocard["link"])
-
         await ctx.send(embed=embed, view=view)
         await view.wait()
         if view.claimed:

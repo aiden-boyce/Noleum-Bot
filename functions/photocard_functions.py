@@ -21,7 +21,7 @@ def get_rand_photocard(path: str) -> list[str]:
 
 
 def roll_photocard() -> dict:
-    photocard = get_rand_photocard("functions/photocards_list.txt")
+    photocard = get_rand_photocard("photocards/photocards_list.txt")
     photocard_info = {
         "id": photocard[0],
         "category": photocard[1],
