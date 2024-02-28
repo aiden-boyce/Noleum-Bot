@@ -1,20 +1,39 @@
 import pathlib
 import os
-from dotenv import load_dotenv
 from typing import Final
+from pymongo import MongoClient
+from dotenv import load_dotenv
 import logging
 from logging.config import dictConfig
 
-# Get the Token
+
 load_dotenv()
 DISCORD_TOKEN: Final[str] = os.getenv("DISCORD_TOKEN")
-DB_PASSWORD: Final[str] = os.getenv("DATABASE_PASSWORD")
 
+# Database for Inventory
+SQL_PASSWORD: Final[str] = os.getenv("SQL_PASSWORD")
+
+# Imgur API
+IMGUR_ID: Final[str] = os.getenv("IMGUR_CLIENT_ID")
+IMGUR_SECRET: Final[str] = os.getenv("IMGUR_CLIENT_SECRET")
+
+# Directories
 BASE_DIR = pathlib.Path(__file__).parent
-
 CMDS_DIR = BASE_DIR / "cmds"
 COGS_DIR = BASE_DIR / "cogs"
 
+# API Clients #
+
+# MongoDB
+MONGODB_NAME: Final[str] = os.getenv("MONGODB_NAME")
+MONGODB_URL: Final[str] = os.getenv("MONGODB_URL")
+
+mongodb = MongoClient(MONGODB_URL)
+collection = mongodb[MONGODB_NAME]["Settings"]
+playlist = mongodb[MONGODB_NAME]["Playlist"]
+
+
+# Logging
 LOGGING_CONFIG = {
     "version": 1,
     "disabled_existing_loggers": False,

@@ -39,7 +39,7 @@ class Noleum(commands.Bot):
     # Create the Data Base Pool
     async def create_db_pool(self):
         self.db = await asyncpg.create_pool(
-            database="Noleum", user="postgres", password=settings.DB_PASSWORD
+            database="Noleum", user="postgres", password=settings.SQL_PASSWORD
         )
 
 
