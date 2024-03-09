@@ -23,6 +23,7 @@ CMDS_DIR = BASE_DIR / "cmds"
 COGS_DIR = BASE_DIR / "cogs"
 
 # API Clients #
+YOUTUBE_KEY: Final[str] = os.getenv("YOUTUBE_API_KEY")
 
 # MongoDB
 MONGODB_NAME: Final[str] = os.getenv("MONGODB_NAME")
